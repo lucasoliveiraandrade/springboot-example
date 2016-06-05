@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-Title: springboot-example
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: br.com.example.springboot
+Build-Jdk: 1.7.0_76
+Built-By: lucasandrade
+Created-By: Maven Integration for Eclipse
+
