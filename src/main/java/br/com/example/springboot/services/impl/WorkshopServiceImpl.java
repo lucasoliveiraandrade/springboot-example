@@ -56,9 +56,8 @@ public class WorkshopServiceImpl implements WorkshopService{
 			}
 		}
 		
+		// listando arquivos
 		if(dir.isDirectory()){
-			
-			// listando arquivos
 			for(int index = 0 ; index < dir.listFiles().length ; index++){
 				File file = dir.listFiles()[index];
 				System.out.println(file.getName());
@@ -70,5 +69,11 @@ public class WorkshopServiceImpl implements WorkshopService{
 		fileExtracted.createNewFile();
 		FileOutputStream fileOutputStream = new FileOutputStream(fileExtracted);
 		fileOutputStream.write(multipartFile.getBytes());
+		fileOutputStream.close();
+		
+		//deletando pasta da page
+		if(dir.isDirectory()){
+			dir.delete();
+		}
 	}
 }
