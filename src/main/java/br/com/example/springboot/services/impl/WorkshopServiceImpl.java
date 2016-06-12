@@ -1,5 +1,6 @@
 package br.com.example.springboot.services.impl;
 
+import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,29 @@ public class WorkshopServiceImpl implements WorkshopService{
 
 	@Override
 	public List<Workshop> getAll() {
+		String filesUploadedFolderPath = System.getProperty("user.dir") +"/"+ "filesUploaded";
+		
+		File dir = new File(filesUploadedFolderPath);
+		File fileToRemove = new File(filesUploadedFolderPath +"/"+ "apagar.jpg");
+		
+		// deletando 
+		if(!fileToRemove.isDirectory() && fileToRemove.exists()){
+			if(fileToRemove.delete()){
+				System.out.println("File deleted");
+			}else{
+				System.out.println("File not deleted");
+			}
+		}
+		
+		if(dir.isDirectory()){
+			
+			// listando arquivos
+			for(int index = 0 ; index < dir.listFiles().length ; index++){
+				File file = dir.listFiles()[index];
+				System.out.println(file.getName());
+			}
+		}
+		
 		return (List<Workshop>) workshopRepository.findAll();
 	}
 
@@ -32,6 +56,8 @@ public class WorkshopServiceImpl implements WorkshopService{
 
 	@Override
 	public void deleteAll() {
-		workshopRepository.deleteAll();;
+		workshopRepository.deleteAll();
 	}
+	
+	
 }
